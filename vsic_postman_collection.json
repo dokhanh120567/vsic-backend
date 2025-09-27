@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "VSIC Demo API",
+    "description": "Postman collection for VSIC backend demo.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "http://127.0.0.1:8000/v1/auth/register",
+          "host": ["127.0.0.1:8000"],
+          "path": ["v1", "auth", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"donor@x.com\",\n  \"password\": \"Min8chars!\",\n  \"role\": \"DONOR_BIZ\",\n  \"name\": \"Quán Cơm A\",\n  \"phone\": \"0900000000\",\n  \"lat\": 10.762622,\n  \"lng\": 106.660172,\n  \"address_hint\": \"Near Ben Thanh Market\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "http://127.0.0.1:8000/v1/auth/login",
+          "host": ["127.0.0.1:8000"],
+          "path": ["v1", "auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"donor@x.com\",\n  \"password\": \"Min8chars!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get User By Email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/v1/auth/user/donor@x.com",
+          "host": ["127.0.0.1:8000"],
+          "path": ["v1", "auth", "user", "donor@x.com"]
+        }
+      }
+    }
+  ]
+}

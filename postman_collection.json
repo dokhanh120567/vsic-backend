@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "VSIC Demo API",
+    "description": "Postman collection for VSIC backend demo.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        }
+      }
+    }
+  ]
+}
