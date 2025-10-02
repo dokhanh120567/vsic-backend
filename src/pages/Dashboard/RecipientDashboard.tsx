@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { api } from '../../lib/api';
 import { Button } from '../../components/UI/Button';
 import { LoadingSpinner } from '../../components/UI/LoadingSpinner';
-import { ErrorMessage } from '../../components/UI/ErrorMessage';
 import { ListingCard } from '../../components/Listings/ListingCard';
 
 export const RecipientDashboard: React.FC = () => {

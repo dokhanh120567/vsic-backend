@@ -41,7 +41,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
           
           <div className="flex items-center text-gray-600 text-sm">
             <Clock className="w-4 h-4 mr-1" />
-            <span>Expires: {new Date(listing.expiry_date).toLocaleDateString()}</span>
+            <span>Expires: {listing.expiry_date ? new Date(listing.expiry_date).toLocaleDateString() : 'N/A'}</span>
           </div>
           
           <div className="flex items-center text-gray-600 text-sm">

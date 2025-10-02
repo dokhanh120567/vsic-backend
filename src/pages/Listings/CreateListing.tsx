@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -23,16 +22,16 @@ const createListingSchema = z.object({
 
 type CreateListingData = z.infer<typeof createListingSchema>;
 
-export default function CreateListing() {
+export const CreateListing = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<CreateListingData>({
+  const { register, handleSubmit, formState: { errors } } = useForm<CreateListingData>({
     resolver: zodResolver(createListingSchema)
   });
 
   const mutation = useMutation({
-    mutationFn: (data: CreateListingData) => api.post('/listings', data),
+    mutationFn: (data: CreateListingData) => api.listings.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['listings'] });
       navigate('/dashboard');
@@ -138,4 +137,4 @@ export default function CreateListing() {
       </form>
     </div>
   );
-}
+};

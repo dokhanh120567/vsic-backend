@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { authService } from '../../lib/auth';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/UI/Button';
 import { Input } from '../../components/UI/Input';
@@ -12,7 +14,7 @@ const loginSchema = z.object({
 
 type LoginData = z.infer<typeof loginSchema>;
 
-export default function Login() {
+export const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -24,8 +26,7 @@ export default function Login() {
   const onSubmit = async (data: LoginData) => {
     setLoading(true);
     try {
-      const response = await authService.login(data.email, data.password);
-      login(response.user, response.access_token);
+      await login(data.email, data.password);
       navigate('/dashboard');
     } catch (error) {
       setError('root', { message: 'Invalid email or password' });
@@ -82,4 +83,4 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};

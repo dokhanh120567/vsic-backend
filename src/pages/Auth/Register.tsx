@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { authService } from '../../lib/auth';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/UI/Button';
 import { Input } from '../../components/UI/Input';
@@ -18,10 +20,10 @@ const registerSchema = z.object({
 
 type RegisterData = z.infer<typeof registerSchema>;
 
-export default function Register() {
+export const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { register: registerUser } = useAuth();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema)
@@ -30,8 +32,7 @@ export default function Register() {
   const onSubmit = async (data: RegisterData) => {
     setLoading(true);
     try {
-      const response = await authService.register(data);
-      login(response.user, response.access_token);
+      await registerUser(data.email, data.password, data.full_name, data.role);
       navigate('/dashboard');
     } catch (error) {
       setError('root', { message: 'Registration failed. Please try again.' });
@@ -117,4 +118,4 @@ export default function Register() {
       </div>
     </div>
   );
-}
+};
