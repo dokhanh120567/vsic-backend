@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Filter } from 'lucide-react';
+import { Search, ListFilter as Filter } from 'lucide-react';
 import { Input } from '../UI/Input';
 import { Select } from '../UI/Select';
 
