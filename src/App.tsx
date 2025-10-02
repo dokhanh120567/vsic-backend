@@ -12,6 +12,8 @@
  import { useAuth } from './hooks/useAuth';
  
  const queryClient = new QueryClient({
+ }
+ )
 @@ .. @@
            <Route path="/login" element={<Login />} />
            <Route path="/register" element={<Register />} />
